@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conjunctions — Revision · Grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Bebas+Neue&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Sans+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-deep:   #0a1628;
+  --blue-mid:    #0d2247;
+  --blue-rule:   #1a3a6e;
+  --blue-light:  #1e4d9c;
+  --white:       #e8eef8;
+  --white-dim:   #8fa3c8;
+  --yellow:      #f5e400;
+  --yellow-dim:  #b8aa00;
+  --red:         #ff3c3c;
+  --green:       #00e57a;
+  --grid:        rgba(30,77,156,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--blue-deep);
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.6;
+  /* blueprint grid */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+/* ─── UTILITY ─── */
+.mono { font-family: 'IBM Plex Mono', monospace; }
+.label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+}
+.tick {
+  display: inline-block;
+  width: 8px; height: 1px;
+  background: var(--white-dim);
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
+/* ─── HEADER ─── */
+.masthead {
+  background: var(--blue-mid);
+  border-bottom: 2px solid var(--yellow);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* corner brackets */
+.masthead::before,
+.masthead::after {
+  content: '';
+  position: absolute;
+  width: 60px; height: 60px;
+  border-color: var(--blue-light);
+  border-style: solid;
+  opacity: 0.5;
+}
+.masthead::before { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.masthead::after  { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
+.masthead-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mh-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mh-project {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  border: 1px solid var(--yellow);
+  padding: 0.2em 0.7em;
+}
+
+.mh-id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--white-dim);
+  letter-spacing: 0.15em;
+}
+
+.masthead h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 12vw, 9rem);
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 0;
+}
+
+.masthead h1 span {
+  color: var(--yellow);
+}
+
+.mh-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--blue-rule);
+  flex-wrap: wrap;
+}
+
+.mh-subtitle .label { font-size: 0.58rem; }
+
+.mh-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.15em 0.6em;
+  border: 1px solid var(--blue-rule);
+  color: var(--white-dim);
+}
+
+/* ─── NAV ─── */
+.nav-strip {
+  background: var(--blue-deep);
+  border-bottom: 1px solid var(--blue-rule);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+.nav-strip a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  padding: 0.9rem 1.2rem;
+  text-decoration: none;
+  border-right: 1px solid var(--blue-rule);
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-strip a:hover { color: var(--yellow); background: rgba(245,228,0,0.04); }
+.nav-strip a .n { color: var(--yellow); font-size: 0.5rem; }
+
+/* ─── MAIN ─── */
+.main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2.5rem 5rem;
+}
+
+/* ─── SECTION HEADS ─── */
+.sec-head {
+  margin: 4rem 0 2rem;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid var(--yellow);
+}
+
+.sec-head .sec-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--yellow);
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.sec-head .sec-name {
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: -0.25rem;
+}
+
+/* ─── REFERENCE PANELS ─── */
+.ref-panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  border: 1px solid var(--blue-rule);
+}
+
+.panel {
+  background: var(--blue-mid);
+  position: relative;
+  overflow: hidden;
+}
+
+/* corner ticks */
+.panel::before {
+  content: attr(data-ref);
+  position: absolute;
+  top: 0.5rem; right: 0.75rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5rem;
+  color: var(--blue-light);
+  letter-spacing: 0.15em;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--blue-rule);
+  background: rgba(0,0,0,0.2);
+}
+
+.panel-type {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.panel-type.coord  { color: var(--yellow); }
+.panel-type.sub    { color: var(--green); }
+.panel-type.corr   { color: #ff9f43; }
+
+.panel-code {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em;
+  border: 1px solid;
+  margin-left: auto;
+}
+
+.coord .panel-code { color: var(--yellow);  border-color: var(--yellow-dim); }
+.sub   .panel-code { color: var(--green);   border-color: var(--green); }
+.corr  .panel-code { color: #ff9f43;        border-color: #b36d2e; }
+
+.panel-body { padding: 1.25rem; }
+
+/* pill row */
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.pill {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.2em 0.6em;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--blue-rule);
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.panel-rule {
+  font-size: 0.78rem;
+  color: var(--white-dim);
+  font-style: italic;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--blue-light);
+  line-height: 1.5;
+}
+
+/* example grid */
+.ex-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--blue-rule);
+  border: 1px solid var(--blue-rule);
+}
+
+@media (max-width: 600px) {
+  .ex-grid { grid-template-columns: 1fr; }
+}
+
+.ex-cell {
+  background: rgba(0,0,0,0.25);
+  padding: 0.65rem 0.75rem;
+}
+
+.ex-cell .ex-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ex-cell .ex-label::before {
+  content: '▸';
+  font-size: 0.5rem;
+}
+
+.ex-label.coord { color: var(--yellow); }
+.ex-label.sub   { color: var(--green); }
+.ex-label.corr  { color: #ff9f43; }
+
+.ex-cell p {
+  font-size: 0.8rem;
+  color: var(--white);
+  line-height: 1.45;
+}
+
+.ex-cell em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--yellow);
+}
+
+.ex-cell.sub em   { color: var(--green); }
+.ex-cell.corr em  { color: #ff9f43; }
+
+/* callout box */
+.callout {
+  margin-top: 2px;
+  background: rgba(245,228,0,0.05);
+  border: 1px solid var(--yellow-dim);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.callout-marker {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--yellow);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.callout p {
+  font-size: 0.78rem;
+  color: var(--white-dim);
+  line-height: 1.65;
+}
+
+.callout strong {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.callout em {
+  color: var(--white);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ─── EXERCISES ─── */
+.ex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ex-item {
+  background: var(--blue-mid);
+  border: 1px solid var(--blue-rule);
+  overflow: hidden;
+  position: relative;
+}
+
+.ex-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--blue-light);
+}
+
+.ex-prompt {
+  padding: 1rem 1.25rem 1rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(30,77,156,0.4);
+}
+
+.ex-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--blue-light);
+  line-height: 1;
+  min-width: 2.2rem;
+  flex-shrink: 0;
+}
+
+.ex-body { flex: 1; }
+
+.ex-tag {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.12em 0.5em;
+  border: 1px solid var(--blue-rule);
+  color: var(--white-dim);
+  margin-bottom: 0.5rem;
+}
+
+.ex-sentence {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--white);
+  line-height: 1.55;
+  margin-bottom: 0.3rem;
+}
+
+.ex-instruction {
+  font-size: 0.72rem;
+  color: var(--white-dim);
+  font-style: italic;
+}
+
+.ex-foot {
+  padding: 0.65rem 1.25rem 0.65rem 1.5rem;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--yellow);
+  color: var(--blue-deep);
+  border: none;
+  padding: 0.5em 1.2em;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.btn:hover { background: #fff176; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--white-dim);
+  border: 1px solid var(--blue-rule);
+}
+.btn-outline:hover { color: var(--white); border-color: var(--white-dim); background: transparent; }
+
+.answer-panel {
+  display: none;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--blue-rule);
+  background: rgba(0,0,0,0.3);
+}
+
+.answer-panel.open { display: block; }
+
+.answer-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+  line-height: 1.55;
+}
+
+.answer-note {
+  font-size: 0.72rem;
+  color: var(--white-dim);
+  font-style: italic;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--blue-light);
+  line-height: 1.55;
+}
+
+/* ─── ERROR PAIRS ─── */
+.error-list { display: flex; flex-direction: column; gap: 2px; }
+
+.error-item {
+  background: var(--blue-mid);
+  border: 1px solid var(--blue-rule);
+  overflow: hidden;
+}
+
+.error-prompt {
+  padding: 1rem 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(30,77,156,0.4);
+}
+
+.error-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--blue-light);
+  line-height: 1;
+  min-width: 1.8rem;
+  flex-shrink: 0;
+}
+
+.wrong-right { flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+
+.wrong-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.wr-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.1em 0.5em;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.wr-badge.x { background: var(--red); color: white; }
+.wr-badge.ok { background: var(--green); color: var(--blue-deep); }
+
+.wr-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.wr-text.x  { color: var(--white-dim); text-decoration: line-through; text-decoration-color: var(--red); }
+.wr-text.ok { color: var(--white); }
+
+.error-exp {
+  padding: 0.75rem 1.25rem;
+  background: rgba(0,0,0,0.25);
+  font-size: 0.72rem;
+  color: var(--white-dim);
+  font-style: italic;
+  line-height: 1.55;
+  display: none;
+  border-top: 1px solid var(--blue-rule);
+}
+
+.error-exp.open { display: block; }
+
+.error-foot {
+  padding: 0.65rem 1.25rem;
+  background: rgba(0,0,0,0.15);
+  border-top: 1px solid rgba(30,77,156,0.3);
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ─── QUIZ ─── */
+.quiz-list { display: flex; flex-direction: column; gap: 2px; }
+
+.q-item {
+  background: var(--blue-mid);
+  border: 1px solid var(--blue-rule);
+  overflow: hidden;
+}
+
+.q-head {
+  padding: 1rem 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(30,77,156,0.4);
+  background: rgba(0,0,0,0.2);
+}
+
+.q-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--yellow);
+  line-height: 1;
+  min-width: 1.8rem;
+  flex-shrink: 0;
+}
+
+.q-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  flex: 1;
+  color: var(--white);
+}
+
+.q-diff {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 0.2rem;
+}
+
+.q-options {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.q-opt {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.5rem 0.65rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.12s, background 0.12s;
+}
+
+.q-opt:hover:not(.locked) {
+  border-color: var(--blue-light);
+  background: rgba(30,77,156,0.15);
+}
+
+.q-opt.correct { background: rgba(0,229,122,0.08); border-color: var(--green); }
+.q-opt.wrong   { background: rgba(255,60,60,0.07); border-color: var(--red); opacity: 0.6; }
+
+.opt-l {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  width: 1.6em;
+  height: 1.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-rule);
+  color: var(--white);
+  flex-shrink: 0;
+  letter-spacing: 0.05em;
+  transition: background 0.12s;
+}
+
+.q-opt.correct .opt-l { background: var(--green); color: var(--blue-deep); }
+.q-opt.wrong   .opt-l { background: var(--red); color: white; }
+
+.opt-t {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--white-dim);
+  line-height: 1.4;
+}
+
+.q-opt.correct .opt-t,
+.q-opt.wrong   .opt-t { color: var(--white); }
+
+.q-feedback {
+  display: none;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--blue-rule);
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--white-dim);
+  background: rgba(0,0,0,0.3);
+  line-height: 1.55;
+}
+
+.q-feedback.open { display: block; }
+
+/* score */
+.score-block {
+  display: none;
+  margin-top: 2px;
+  background: var(--blue-mid);
+  border: 2px solid var(--yellow);
+  padding: 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-block::before,
+.score-block::after {
+  content: '';
+  position: absolute;
+  width: 50px; height: 50px;
+  border-color: var(--yellow-dim);
+  border-style: solid;
+  opacity: 0.4;
+}
+.score-block::before { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+.score-block::after  { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+.score-block.open { display: block; }
+
+.score-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6rem;
+  color: var(--yellow);
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.score-denom {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-top: 0.25rem;
+}
+
+.score-msg {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--white);
+  margin-top: 1rem;
+}
+
+.btn-reset {
+  margin-top: 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--yellow);
+  border: 1px solid var(--yellow-dim);
+  padding: 0.55em 1.4em;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-reset:hover { background: rgba(245,228,0,0.1); }
+
+/* ─── EXPANDABLE PILLS ─── */
+.pill-more {
+  display: none;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+.pill-more.open { display: flex; }
+
+.btn-more {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--white-dim);
+  border: 1px dashed var(--blue-rule);
+  padding: 0.2em 0.7em;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  margin-top: 0.3rem;
+}
+.btn-more:hover { color: var(--white); border-color: var(--white-dim); }
+
+/* ─── PROGRESS BAR ─── */
+.quiz-progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  margin-bottom: 0.5rem;
+}
+
+.progress-track {
+  flex: 1;
+  height: 3px;
+  background: var(--blue-rule);
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--yellow);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.progress-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  white-space: nowrap;
+  min-width: 5.5rem;
+  text-align: right;
+}
+
+/* ─── EXPAND ALL BUTTON ─── */
+.section-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.btn-expand-all {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--white-dim);
+  border: 1px solid var(--blue-rule);
+  padding: 0.4em 1em;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-expand-all:hover { color: var(--yellow); border-color: var(--yellow-dim); }
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  @page { margin: 1.5cm; size: A4; }
+
+  body {
+    background: white !important;
+    background-image: none !important;
+    color: black !important;
+    font-size: 11pt;
+  }
+
+  .nav-strip { display: none !important; }
+
+  .masthead {
+    background: black !important;
+    border-bottom: 3pt solid black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .masthead h1 { font-size: 48pt !important; color: white !important; }
+  .masthead h1 span { color: #f5e400 !important; }
+  .mh-project { color: #f5e400 !important; border-color: #f5e400 !important; }
+  .mh-id, .mh-subtitle .label, .mh-tag { color: #aaa !important; }
+
+  .main { padding: 0 !important; }
+
+  .sec-head { margin: 1.5rem 0 0.75rem !important; page-break-after: avoid; }
+  .sec-head .sec-letter { font-size: 36pt !important; color: black !important; }
+  .sec-head .sec-name { color: #444 !important; }
+  .sec-head { border-left-color: black !important; }
+
+  .ref-panels { border-color: #999 !important; gap: 1pt !important; }
+  .panel { background: white !important; border: 1pt solid #999 !important; break-inside: avoid; }
+  .panel-head { background: #f0f0f0 !important; border-bottom-color: #999 !important; }
+  .panel-type.coord { color: black !important; }
+  .panel-type.sub   { color: #006633 !important; }
+  .panel-type.corr  { color: #883300 !important; }
+  .panel-code { border-color: #999 !important; color: #555 !important; }
+
+  .pill { background: #f0f0f0 !important; border-color: #bbb !important; color: black !important; }
+  .pill-more { display: flex !important; }
+  .btn-more { display: none !important; }
+
+  .panel-rule { color: #444 !important; border-left-color: #bbb !important; }
+
+  .ex-grid { background: #bbb !important; border-color: #bbb !important; }
+  .ex-cell { background: #f8f8f8 !important; }
+  .ex-cell p { color: black !important; }
+  .ex-cell em { color: black !important; font-weight: 700 !important; text-decoration: underline; }
+
+  .callout { background: #f5f5f5 !important; border-color: #999 !important; }
+  .callout p { color: #333 !important; }
+  .callout em { color: black !important; }
+  .callout strong { color: black !important; }
+  .callout-marker { color: black !important; }
+
+  .ex-item, .error-item { background: white !important; border-color: #bbb !important; break-inside: avoid; }
+  .ex-item::before { background: #999 !important; }
+  .ex-num, .error-n { color: #777 !important; }
+  .ex-tag { border-color: #bbb !important; color: #555 !important; }
+  .ex-sentence { color: black !important; }
+  .ex-instruction { color: #555 !important; }
+  .ex-foot, .error-foot { display: none !important; }
+  .answer-panel { display: block !important; background: #f8f8f8 !important; border-top-color: #ccc !important; }
+  .answer-text { color: #006633 !important; }
+  .answer-note { color: #444 !important; border-left-color: #bbb !important; }
+  .section-toolbar { display: none !important; }
+
+  .wrong-right .wr-text.x { color: #888 !important; }
+  .wrong-right .wr-text.ok { color: black !important; }
+  .wr-badge.x { background: #cc0000 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .wr-badge.ok { background: #006633 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .error-exp { display: block !important; color: #444 !important; border-top-color: #ccc !important; }
+  .error-prompt { border-bottom-color: #ccc !important; }
+
+  .quiz-progress { display: none !important; }
+  .q-item { background: white !important; border-color: #bbb !important; break-inside: avoid; }
+  .q-head { background: #f0f0f0 !important; border-bottom-color: #bbb !important; }
+  .q-n { color: black !important; }
+  .q-text { color: black !important; }
+  .q-diff { color: #777 !important; }
+  .opt-l { background: #ddd !important; color: black !important; }
+  .opt-t { color: black !important; }
+  .q-feedback { display: none !important; }
+  .score-block { display: none !important; }
+  .btn-reset { display: none !important; }
+
+  .footer {
+    background: white !important;
+    border-top-color: black !important;
+    color: #555 !important;
+  }
+  .footer span { color: #555 !important; }
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  border-top: 1px solid var(--blue-rule);
+  padding: 1.5rem 2.5rem;
+  background: var(--blue-mid);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.footer span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+}
+
+/* divider rule */
+.rule {
+  border: none;
+  height: 1px;
+  background: var(--blue-rule);
+  margin: 1rem 0;
+}
+
+/* spot the error section uses same exercise styling but always shows wrong/right */
+</style>
+</head>
+<body>
+
+<!-- ═══ MASTHEAD ═══ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="mh-meta">
+      <span class="mh-project">Grammar · Revision</span>
+      <span class="mh-id">DOC-REF: CONJ-01 // REV.3</span>
+    </div>
+    <h1>CON<span>JUNC</span>TIONS</h1>
+    <div class="mh-subtitle">
+      <span class="label">Component types</span>
+      <span class="mh-tag">01 · Coordinating</span>
+      <span class="mh-tag">02 · Subordinating</span>
+      <span class="mh-tag">03 · Correlative</span>
+      <span class="label" style="margin-left:auto;">5 Sections · Self-check</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav-strip">
+  <div class="nav-inner">
+    <a href="#ref"><span class="n">A</span> Reference</a>
+    <a href="#combine"><span class="n">B</span> Combine</a>
+    <a href="#errors"><span class="n">C</span> Mistakes</a>
+    <a href="#spot"><span class="n">D</span> Spot &amp; Fix</a>
+    <a href="#quiz"><span class="n">E</span> Quiz</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ═══════════════════════ A · REFERENCE ═══════════════════════ -->
+<section id="ref">
+  <div class="sec-head">
+    <span class="sec-letter">A</span>
+    <span class="sec-name">Quick Reference — Component Breakdown</span>
+  </div>
+
+  <div class="ref-panels">
+
+    <!-- COORD -->
+    <div class="panel coord" data-ref="TYPE-01">
+      <div class="panel-head">
+        <div class="panel-type coord">Coordinating</div>
+        <span class="label" style="color:var(--white-dim); font-size:0.58rem;">Join equal elements — mnemonic: FANBOYS</span>
+        <span class="panel-code">TYPE-01</span>
+      </div>
+      <div class="panel-body">
+        <div class="pill-row">
+          <span class="pill">for</span><span class="pill">and</span><span class="pill">nor</span>
+          <span class="pill">but</span><span class="pill">or</span><span class="pill">yet</span><span class="pill">so</span>
+        </div>
+        <p class="panel-rule">Connect two independent clauses, words, or phrases of equal grammatical rank. Use a comma before the conjunction when joining two full independent clauses.</p>
+        <div class="ex-grid">
+          <div class="ex-cell coord">
+            <div class="ex-label coord">Contrast</div>
+            <p>She trained hard, <em>but</em> she lost.</p>
+          </div>
+          <div class="ex-cell coord">
+            <div class="ex-label coord">Addition</div>
+            <p>He sings <em>and</em> plays guitar.</p>
+          </div>
+          <div class="ex-cell coord">
+            <div class="ex-label coord">Result</div>
+            <p>It rained, <em>so</em> we stayed in.</p>
+          </div>
+          <div class="ex-cell coord">
+            <div class="ex-label coord">Neg. Alternative</div>
+            <p>She <em>neither</em> laughed <em>nor</em> smiled.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB -->
+    <div class="panel sub" data-ref="TYPE-02">
+      <div class="panel-head">
+        <div class="panel-type sub">Subordinating</div>
+        <span class="label" style="color:var(--white-dim); font-size:0.58rem;">Join a dependent clause to a main clause</span>
+        <span class="panel-code">TYPE-02</span>
+      </div>
+      <div class="panel-body">
+        <div class="pill-row">
+          <span class="pill">although</span><span class="pill">because</span>
+          <span class="pill">when</span><span class="pill">if</span>
+          <span class="pill">unless</span><span class="pill">until</span>
+          <span class="pill">even though</span><span class="pill">whereas</span>
+          <span class="pill">so that</span>
+          <div class="pill-more" id="subMore">
+            <span class="pill">since</span><span class="pill">while</span>
+            <span class="pill">whenever</span><span class="pill">after</span>
+            <span class="pill">before</span><span class="pill">once</span>
+            <span class="pill">as soon as</span><span class="pill">provided that</span>
+            <span class="pill">as if</span><span class="pill">as long as</span>
+          </div>
+          <button class="btn-more" id="subMoreBtn" onclick="toggleMore()">+ More</button>
+        </div>
+        <p class="panel-rule">If the dependent clause comes <em>first</em>, separate it with a comma. If it comes <em>second</em>, no comma is needed.</p>
+        <div class="ex-grid">
+          <div class="ex-cell sub">
+            <div class="ex-label sub">Cause</div>
+            <p><em>Because</em> she trained daily, she won.</p>
+          </div>
+          <div class="ex-cell sub">
+            <div class="ex-label sub">Condition</div>
+            <p>We'll cancel <em>unless</em> it stops.</p>
+          </div>
+          <div class="ex-cell sub">
+            <div class="ex-label sub">Concession</div>
+            <p><em>Although</em> it was late, he worked on.</p>
+          </div>
+          <div class="ex-cell sub">
+            <div class="ex-label sub">Contrast</div>
+            <p>She's outgoing, <em>whereas</em> he's shy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORR -->
+    <div class="panel corr" data-ref="TYPE-03">
+      <div class="panel-head">
+        <div class="panel-type corr">Correlative</div>
+        <span class="label" style="color:var(--white-dim); font-size:0.58rem;">Paired conjunctions — always used together</span>
+        <span class="panel-code">TYPE-03</span>
+      </div>
+      <div class="panel-body">
+        <div class="pill-row">
+          <span class="pill">both … and</span>
+          <span class="pill">either … or</span>
+          <span class="pill">neither … nor</span>
+          <span class="pill">not only … but also</span>
+          <span class="pill">whether … or</span>
+          <span class="pill">as … as</span>
+        </div>
+        <p class="panel-rule">Both elements must appear. The items they connect must be grammatically parallel — noun + noun, verb phrase + verb phrase, clause + clause.</p>
+        <div class="ex-grid">
+          <div class="ex-cell corr">
+            <div class="ex-label corr">Both … and</div>
+            <p><em>Both</em> the teacher <em>and</em> the students were surprised.</p>
+          </div>
+          <div class="ex-cell corr">
+            <div class="ex-label corr">Not only … but also</div>
+            <p>She <em>not only</em> wrote it <em>but also</em> performed it.</p>
+          </div>
+          <div class="ex-cell corr">
+            <div class="ex-label corr">Either … or</div>
+            <p>You can <em>either</em> call <em>or</em> send an email.</p>
+          </div>
+          <div class="ex-cell corr">
+            <div class="ex-label corr">Neither … nor</div>
+            <p><em>Neither</em> the director <em>nor</em> the actors knew.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end ref-panels -->
+
+  <div class="callout">
+    <span class="callout-marker">!</span>
+    <p>
+      <strong>The Comma Rule — Specification</strong>
+      Use a comma <em>before</em> a coordinating conjunction when it joins two complete independent clauses (She was tired, <em>but</em> she continued). No comma when it joins only words or phrases (bread <em>and</em> cheese). With subordinating conjunctions: comma when the dependent clause comes <em>first</em> (<em>Because</em> it rained, we stayed in) — no comma when it comes second (We stayed in <em>because</em> it rained).
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ B · COMBINE ═══════════════════════ -->
+<section id="combine">
+  <div class="sec-head">
+    <span class="sec-letter">B</span>
+    <span class="sec-name">Combine &amp; Complete</span>
+  </div>
+
+  <div class="section-toolbar">
+    <button class="btn-expand-all" onclick="expandAll('combine-list')">⊞ Expand All Answers</button>
+  </div>
+  <div class="ex-list" id="combine-list">
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">1</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-02 · Cause</span>
+          <div class="ex-sentence">The match was postponed. There was a storm forecast.</div>
+          <p class="ex-instruction">Combine using a subordinating conjunction. Give both word orders.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Because there was a storm forecast, the match was postponed.<br>The match was postponed because there was a storm forecast.</div>
+        <p class="answer-note">Clause-first → comma required. Clause-second → no comma.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">2</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-01 · Contrast</span>
+          <div class="ex-sentence">The documentary was long. It was absolutely gripping.</div>
+          <p class="ex-instruction">Combine into one sentence using an appropriate coordinating conjunction.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">The documentary was long, but it was absolutely gripping.</div>
+        <p class="answer-note">Two independent clauses joined by <em>but</em> → comma before the conjunction.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">3</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-03 · not only … but also</span>
+          <div class="ex-sentence">She speaks French. She also writes poetry in French.</div>
+          <p class="ex-instruction">Rewrite using <em>not only … but also</em>. Keep parallel structure.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">She not only speaks French but also writes poetry in it.</div>
+        <p class="answer-note">Both slots take verb phrases → parallel. "In it" avoids repeating "in French."</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">4</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-02 · Concession</span>
+          <div class="ex-sentence">He had very little time to prepare. His speech was brilliant.</div>
+          <p class="ex-instruction">Combine using a subordinating conjunction expressing concession.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Although he had very little time to prepare, his speech was brilliant.<br><em>or:</em> Even though he had very little time to prepare, his speech was brilliant.</div>
+        <p class="answer-note"><em>Although / even though / though</em> all work. <em>Despite / in spite of</em> are prepositions — they require a noun phrase or gerund, not a full clause.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">5</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-03 · neither … nor</span>
+          <div class="ex-sentence">The heating isn't working. The hot water isn't working either.</div>
+          <p class="ex-instruction">Rewrite using <em>neither … nor</em>.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Neither the heating nor the hot water is working.</div>
+        <p class="answer-note"><em>Neither … nor</em> is already negative — do not add <em>not</em> elsewhere. Verb agrees with the nearer subject (<em>hot water</em> → singular → <em>is</em>).</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">6</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-02 · Condition</span>
+          <div class="ex-sentence">You must submit the form. Otherwise you will lose your place.</div>
+          <p class="ex-instruction">Combine using <em>unless</em>.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Unless you submit the form, you will lose your place.<br><em>or:</em> You will lose your place unless you submit the form.</div>
+        <p class="answer-note"><em>Unless</em> = <em>if … not</em>. Never write <em>unless you don't</em> — that reverses the meaning.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">7</span>
+        <div class="ex-body">
+          <span class="ex-tag">TYPE-02 · Time</span>
+          <div class="ex-sentence">We will wait. The results are announced.</div>
+          <p class="ex-instruction">Join using an appropriate time conjunction.</p>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">We will wait until the results are announced.</div>
+        <p class="answer-note">After future time conjunctions (<em>until, when, as soon as, before, after</em>), use simple present — not future — in the subordinate clause.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ C · COMMON MISTAKES ═══════════════════════ -->
+<section id="errors">
+  <div class="sec-head">
+    <span class="sec-letter">C</span>
+    <span class="sec-name">Common Mistakes — Error Log</span>
+  </div>
+
+  <div class="error-list">
+
+    <div class="error-item">
+      <div class="error-prompt">
+        <span class="error-n">1</span>
+        <div class="wrong-right">
+          <div class="wrong-line">
+            <span class="wr-badge x">✕</span>
+            <span class="wr-text x">Although she was tired, but she kept going.</span>
+          </div>
+          <div class="wrong-line">
+            <span class="wr-badge ok">✓</span>
+            <span class="wr-text ok">Although she was tired, she kept going.</span>
+          </div>
+        </div>
+      </div>
+      <div class="error-exp open">
+        <em>Although</em> already introduces concession. Adding <em>but</em> creates a double conjunction — choose one or the other, never both.
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div class="error-prompt">
+        <span class="error-n">2</span>
+        <div class="wrong-right">
+          <div class="wrong-line">
+            <span class="wr-badge x">✕</span>
+            <span class="wr-text x">Despite it was raining, we went out.</span>
+          </div>
+          <div class="wrong-line">
+            <span class="wr-badge ok">✓</span>
+            <span class="wr-text ok">Despite the rain, we went out. / Although it was raining, we went out.</span>
+          </div>
+        </div>
+      </div>
+      <div class="error-exp open">
+        <em>Despite / in spite of</em> are prepositions — noun or gerund only, not a full clause. Use <em>although / even though</em> for a full clause.
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div class="error-prompt">
+        <span class="error-n">3</span>
+        <div class="wrong-right">
+          <div class="wrong-line">
+            <span class="wr-badge x">✕</span>
+            <span class="wr-text x">Unless you don't hurry, you'll miss the bus.</span>
+          </div>
+          <div class="wrong-line">
+            <span class="wr-badge ok">✓</span>
+            <span class="wr-text ok">Unless you hurry, you'll miss the bus.</span>
+          </div>
+        </div>
+      </div>
+      <div class="error-exp open">
+        <em>Unless</em> already means <em>if not</em>. Adding <em>don't</em> creates a double negative that reverses the meaning.
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div class="error-prompt">
+        <span class="error-n">4</span>
+        <div class="wrong-right">
+          <div class="wrong-line">
+            <span class="wr-badge x">✕</span>
+            <span class="wr-text x">Neither the manager or the staff were informed.</span>
+          </div>
+          <div class="wrong-line">
+            <span class="wr-badge ok">✓</span>
+            <span class="wr-text ok">Neither the manager nor the staff were informed.</span>
+          </div>
+        </div>
+      </div>
+      <div class="error-exp open">
+        <em>Neither</em> pairs only with <em>nor</em>; <em>either</em> pairs only with <em>or</em>. Cross-pairing is a very common error.
+      </div>
+    </div>
+
+    <div class="error-item">
+      <div class="error-prompt">
+        <span class="error-n">5</span>
+        <div class="wrong-right">
+          <div class="wrong-line">
+            <span class="wr-badge x">✕</span>
+            <span class="wr-text x">We will call you when we will arrive.</span>
+          </div>
+          <div class="wrong-line">
+            <span class="wr-badge ok">✓</span>
+            <span class="wr-text ok">We will call you when we arrive.</span>
+          </div>
+        </div>
+      </div>
+      <div class="error-exp open">
+        In time clauses with <em>when, until, after, before, as soon as</em>, use simple present — not future — even when the meaning is future.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ D · SPOT & CORRECT ═══════════════════════ -->
+<section id="spot">
+  <div class="sec-head">
+    <span class="sec-letter">D</span>
+    <span class="sec-name">Spot &amp; Correct — One Error Per Line</span>
+  </div>
+
+  <div class="section-toolbar">
+    <button class="btn-expand-all" onclick="expandAll('spot-list')">⊞ Expand All Answers</button>
+  </div>
+  <div class="ex-list" id="spot-list">
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">1</span>
+        <div class="ex-body">
+          <div class="ex-sentence">She not only sings beautifully but she also dances professionally.</div>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">She not only sings beautifully but also dances professionally.</div>
+        <p class="answer-note"><em>Not only … but also</em> — inserting <em>she</em> between <em>but</em> and <em>also</em> breaks parallel structure.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">2</span>
+        <div class="ex-body">
+          <div class="ex-sentence">He works hard, so but he never seems to get ahead.</div>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">He works hard, yet he never seems to get ahead.</div>
+        <p class="answer-note">Two coordinating conjunctions cannot be used together. <em>Yet</em> (concessive contrast) is the correct single conjunction here.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">3</span>
+        <div class="ex-body">
+          <div class="ex-sentence">Because of she missed the bus, she arrived late.</div>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Because she missed the bus, she arrived late.</div>
+        <p class="answer-note"><em>Because</em> is a conjunction — it introduces a full clause directly. <em>Because of</em> is a preposition requiring a noun phrase: <em>Because of the delay…</em></p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">4</span>
+        <div class="ex-body">
+          <div class="ex-sentence">Both the food and the service was excellent.</div>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Both the food and the service were excellent.</div>
+        <p class="answer-note"><em>Both … and</em> always takes a plural verb — both subjects are included.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">5</span>
+        <div class="ex-body">
+          <div class="ex-sentence">Whereas I enjoy spicy food but my sister finds it unbearable.</div>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">Whereas I enjoy spicy food, my sister finds it unbearable.</div>
+        <p class="answer-note"><em>Whereas</em> already sets up the contrast. The main clause does not need <em>but</em> as well.</p>
+      </div>
+    </div>
+
+    <div class="ex-item">
+      <div class="ex-prompt">
+        <span class="ex-num">6</span>
+        <div class="ex-body">
+          <div class="ex-sentence">I'll lend you the money provided that you will pay me back by Friday.</div>
+        </div>
+      </div>
+      <div class="ex-foot">
+        <button class="btn" onclick="toggle(this)">Show Answer</button>
+      </div>
+      <div class="answer-panel">
+        <div class="answer-text">I'll lend you the money provided that you pay me back by Friday.</div>
+        <p class="answer-note"><em>Provided that</em> introduces a conditional clause — takes simple present, not future.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════ E · QUIZ ═══════════════════════ -->
+<section id="quiz">
+  <div class="sec-head">
+    <span class="sec-letter">E</span>
+    <span class="sec-name">Quiz — 8 Questions</span>
+  </div>
+
+  <div class="quiz-progress">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-label" id="progressLabel">0 / 8 answered</span>
+  </div>
+
+  <div class="quiz-list" id="quizList">
+
+    <div class="q-item" data-correct="B">
+      <div class="q-head">
+        <span class="q-n">1</span>
+        <span class="q-text">Which sentence uses a coordinating conjunction correctly?</span>
+        <span class="q-diff">Easy</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">Although she trained hard but she lost.</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">She trained hard, yet she lost.</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">She trained hard yet but lost.</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">She trained hard, although lost.</span></div>
+      </div>
+      <div class="q-feedback"><em>Yet</em> joins two independent clauses in contrast. A comma precedes it because both clauses are complete. Option A uses two conjunctions (<em>although … but</em>) — pick one only.</div>
+    </div>
+
+    <div class="q-item" data-correct="C">
+      <div class="q-head">
+        <span class="q-n">2</span>
+        <span class="q-text">Choose the correct sentence:</span>
+        <span class="q-diff">Easy</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">Despite the traffic was bad, we arrived on time.</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">Despite of the heavy traffic, we arrived on time.</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">Despite the heavy traffic, we arrived on time.</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">In spite that traffic was bad, we arrived on time.</span></div>
+      </div>
+      <div class="q-feedback"><em>Despite</em> is a preposition → noun phrase only. <em>In spite of</em> requires <em>of</em>. <em>Although / even though</em> take a full clause.</div>
+    </div>
+
+    <div class="q-item" data-correct="D">
+      <div class="q-head">
+        <span class="q-n">3</span>
+        <span class="q-text">Which sentence uses a time conjunction correctly?</span>
+        <span class="q-diff">Medium</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">Call me when you will arrive.</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">I'll start eating until you come back.</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">As soon as the results will be published, I'll let you know.</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">As soon as the results are published, I'll let you know.</span></div>
+      </div>
+      <div class="q-feedback">After future time conjunctions, use simple present in the subordinate clause — not future. Option B misuses <em>until</em>: it means up to a point, not after it.</div>
+    </div>
+
+    <div class="q-item" data-correct="B">
+      <div class="q-head">
+        <span class="q-n">4</span>
+        <span class="q-text">"I'll go to the party __ I finish this report." — Which conjunction fits best?</span>
+        <span class="q-diff">Medium</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">because</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">once</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">although</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">whereas</span></div>
+      </div>
+      <div class="q-feedback"><em>Once</em> signals that the first action must be completed before the second can happen. The other options express cause, concession, and contrast respectively.</div>
+    </div>
+
+    <div class="q-item" data-correct="C">
+      <div class="q-head">
+        <span class="q-n">5</span>
+        <span class="q-text">Which sentence uses <em>not only … but also</em> with correct parallel structure?</span>
+        <span class="q-diff">Medium</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">He not only fixed the engine but also the brakes were repaired by him.</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">He not only fixed the engine but also to repair the brakes.</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">He not only fixed the engine but also repaired the brakes.</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">He not only fixed the engine but also he repaired the brakes.</span></div>
+      </div>
+      <div class="q-feedback">C is correct: <em>not only</em> + verb phrase (<em>fixed the engine</em>), <em>but also</em> + verb phrase (<em>repaired the brakes</em>) — both slots hold the same grammatical structure. A switches to passive voice, breaking parallelism. B uses an infinitive where a finite verb is required. D inserts a redundant subject <em>he</em>, disrupting the paired structure.</div>
+    </div>
+
+    <div class="q-item" data-correct="B">
+      <div class="q-head">
+        <span class="q-n">6</span>
+        <span class="q-text">"Neither the CEO __ the board members __ present at the vote." — Correct form?</span>
+        <span class="q-diff">Hard</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">or … was</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">nor … were</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">or … were</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">nor … was</span></div>
+      </div>
+      <div class="q-feedback"><em>Neither … nor</em> is the fixed pair. Verb agrees with the nearer subject (<em>board members</em> → plural → <em>were</em>).</div>
+    </div>
+
+    <div class="q-item" data-correct="D">
+      <div class="q-head">
+        <span class="q-n">7</span>
+        <span class="q-text">Which sentence uses <em>so that</em> correctly?</span>
+        <span class="q-diff">Hard</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">She left early, so that she was tired.</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">He studies so that he studied well.</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">They whispered so that interrupted the meeting.</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">She left early so that she could catch the last train.</span></div>
+      </div>
+      <div class="q-feedback"><em>So that</em> expresses purpose — it must be followed by a clause with <em>could / would / can / will / might</em>. Do not confuse with <em>so</em> (result).</div>
+    </div>
+
+    <div class="q-item" data-correct="B">
+      <div class="q-head">
+        <span class="q-n">8</span>
+        <span class="q-text">Identify the grammatically correct complex sentence:</span>
+        <span class="q-diff">Hard</span>
+      </div>
+      <div class="q-options">
+        <div class="q-opt" onclick="pick(this,'A')"><span class="opt-l">A</span><span class="opt-t">Although the evidence was weak, but the jury still convicted him.</span></div>
+        <div class="q-opt" onclick="pick(this,'B')"><span class="opt-l">B</span><span class="opt-t">Even though the evidence was weak, the jury still convicted him.</span></div>
+        <div class="q-opt" onclick="pick(this,'C')"><span class="opt-l">C</span><span class="opt-t">The jury convicted him, even though that the evidence was weak.</span></div>
+        <div class="q-opt" onclick="pick(this,'D')"><span class="opt-l">D</span><span class="opt-t">Despite the evidence was weak, the jury convicted him.</span></div>
+      </div>
+      <div class="q-feedback">A has double conjunction. C wrongly inserts <em>that</em> after <em>even though</em>. D uses <em>despite</em> with a full clause. B is correct throughout.</div>
+    </div>
+
+  </div>
+
+  <div class="score-block" id="scoreBlock">
+    <div class="score-num" id="scoreNum">—</div>
+    <div class="score-denom">out of 8</div>
+    <div class="score-msg" id="scoreMsg"></div>
+    <br>
+    <button class="btn-reset" onclick="resetQuiz()">↺ Reset Quiz</button>
+  </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+  <span>Grammar · Conjunctions · Revision</span>
+  <span>DOC-REF: CONJ-01 // REV.3 // DSP English</span>
+  <span>Sections: A–E · Self-check enabled</span>
+</footer>
+
+<script>
+// ─── SHOW/HIDE INDIVIDUAL ANSWERS ───
+function toggle(btn) {
+  const item = btn.closest('.ex-item');
+  const panel = item.querySelector('.answer-panel');
+  const open = panel.classList.toggle('open');
+  btn.textContent = open ? 'Hide Answer' : 'Show Answer';
+}
+
+// ─── EXPAND ALL ANSWERS ───
+function expandAll(listId) {
+  const list = document.getElementById(listId);
+  const panels = list.querySelectorAll('.answer-panel');
+  const btns   = list.querySelectorAll('.btn');
+  const allOpen = [...panels].every(p => p.classList.contains('open'));
+  panels.forEach(p => p.classList.toggle('open', !allOpen));
+  btns.forEach(b => b.textContent = allOpen ? 'Show Answer' : 'Hide Answer');
+  // update the expand-all button label
+  const toolbar = list.previousElementSibling;
+  if (toolbar && toolbar.classList.contains('section-toolbar')) {
+    const expandBtn = toolbar.querySelector('.btn-expand-all');
+    if (expandBtn) expandBtn.textContent = allOpen ? '⊞ Expand All Answers' : '⊟ Collapse All Answers';
+  }
+}
+
+// ─── SUBORDINATING PILL EXPANDER ───
+function toggleMore() {
+  const more = document.getElementById('subMore');
+  const btn  = document.getElementById('subMoreBtn');
+  const open = more.classList.toggle('open');
+  btn.textContent = open ? '− Less' : '+ More';
+}
+
+// ─── PROGRESS BAR ───
+function updateProgress() {
+  const pct = (answered / TOTAL) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = answered + ' / ' + TOTAL + ' answered';
+}
+
+// ─── QUIZ ───
+let answered = 0, correct = 0;
+const TOTAL = 8;
+
+function pick(el, chosen) {
+  const item = el.closest('.q-item');
+  if (item.dataset.done) return;
+  item.dataset.done = '1';
+
+  const ans = item.dataset.correct;
+  const opts = item.querySelectorAll('.q-opt');
+  const letters = ['A','B','C','D'];
+
+  opts.forEach((o,i) => {
+    o.classList.add('locked');
+    if (letters[i] === ans) o.classList.add('correct');
+    else if (letters[i] === chosen) o.classList.add('wrong');
+  });
+
+  item.querySelector('.q-feedback').classList.add('open');
+
+  answered++;
+  if (chosen === ans) correct++;
+  updateProgress();
+  if (answered === TOTAL) showScore();
+}
+
+function showScore() {
+  const sb = document.getElementById('scoreBlock');
+  document.getElementById('scoreNum').textContent = correct;
+  const msgs = [
+    [8,'Specification met. Full component mastery confirmed.'],
+    [6,'Strong result — a couple of edge cases slipped through.'],
+    [4,'Solid foundations. Section C is worth another pass.'],
+    [0,'Keep going. Conjunctions reward close structural reading.']
+  ];
+  document.getElementById('scoreMsg').textContent = msgs.find(([m]) => correct >= m)[1];
+  sb.classList.add('open');
+  sb.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function resetQuiz() {
+  answered = 0; correct = 0;
+  updateProgress();
+  document.querySelectorAll('.q-item').forEach(item => {
+    delete item.dataset.done;
+    item.querySelectorAll('.q-opt').forEach(o => o.className = 'q-opt');
+    item.querySelector('.q-feedback').classList.remove('open');
+  });
+  document.getElementById('scoreBlock').classList.remove('open');
+  document.getElementById('quizList').scrollIntoView({ behavior:'smooth' });
+}
+</script>
+</body>
+</html>
